@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Inicio";
+}
+
+<div class="container mt-4">
+    <!-- Encabezado -->
+    <header class="text-center mb-5">
+        <h1 class="display-5 fw-bold">Bienvenido a CiscaLab</h1>
+        <p class="lead">Servicios de laboratorio clínico con tecnología moderna y resultados confiables.</p>
+    </header>
+
+    <!-- Slider de imágenes -->
+    <div id="carouselLaboratorio" class="carousel slide mb-5" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselLaboratorio" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#carouselLaboratorio" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#carouselLaboratorio" data-bs-slide-to="2"></button>
+        </div>
+        <div class="carousel-inner rounded shadow">
+            <div class="carousel-item active">
+                <img src="~/images/lab1.jpg" class="d-block w-100" alt="Laboratorio moderno">
+                <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-2">
+                    <h5>Laboratorio moderno</h5>
+                    <p>Equipos de última generación para diagnósticos precisos.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="~/images/lab2.jpg" class="d-block w-100" alt="Análisis clínicos">
+                <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-2">
+                    <h5>Análisis clínicos</h5>
+                    <p>Resultados confiables y rápidos para tu salud.</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="~/images/lab3.jpg" class="d-block w-100" alt="Personal capacitado">
+                <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-2">
+                    <h5>Personal capacitado</h5>
+                    <p>Profesionales comprometidos con tu bienestar.</p>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselLaboratorio" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselLaboratorio" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+        </button>
+    </div>
+
+    <!-- Sección informativa -->
+    <section class="text-center">
+        <h2 class="mb-3">Nuestros Servicios</h2>
+        <p>Ofrecemos pruebas de laboratorio clínico, diagnóstico molecular y asesoría médica especializada.</p>
+        <a asp-controller="Servicios" asp-action="Index" class="btn btn-primary mt-3">Ver más</a>
+    </section>
+</div>

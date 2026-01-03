@@ -1,0 +1,102 @@
+﻿@using CiscaLab.ViewModels
+@model IngresoResultadoPostViewModel
+
+@{
+	ViewData["Title"] = "Ingreso de Resultados";
+	var detallesVista = ViewBag.DetallesVista as List<ResultadoDetalleVistaViewModel>;
+
+}
+
+<h2>Ingreso de Resultados de examen</h2>
+
+@if (!ViewData.ModelState.IsValid)
+{
+	<div class="alert alert-danger">
+		Por favor corrija los errores antes de continuar.
+	</div>
+
+	<ul>
+		@foreach (var error in ViewData.ModelState.Values.SelectMany(v => v.Errors))
+		{
+			<li class="text-danger">@error.ErrorMessage</li>
+		}
+	</ul>
+
+}
+
+
+<form asp-action="Ingresar" method="post">
+	<input type="hidden" asp-for="OrdenTrabajoDetalleId"/> 
+
+	<div class="mb-3">
+		<strong>Paciente:</strong> @ViewBag.NombrePaciente <br />
+		<strong>Edad:</strong> @ViewBag.EdadPaciente años <br />
+		<strong>Sexo:</strong> @ViewBag.SexoPaciente
+	</div>
+
+
+	<div class="mb-3">
+		<label asp-for="Observacion" class="form-label">Observación general</label>
+		<textarea asp-for="Observacion" class="form-control" rows="3"></textarea>
+	</div>
+
+	<table class="table table-bordered" >
+		<thead>
+			<tr>
+				<th>Parámetro</th>
+				<th>Resultado</th>
+				<th>Unidad</th>
+				<th>Valores normales</th>
+				<th>Observaciones</th>
+			</tr>
+		</thead>
+		<tbody>
+			@for (int i = 0; i < Model.Detalles.Count; i++)
+			{
+				//var tipo = Model.Detalles[i].TipoResultado;
+				var detalleInfo = detallesVista[i];
+				<tr> 
+					<td>@detalleInfo.NombreValor</td>
+					<td>
+						<input type="hidden" asp-for="Detalles[i].ExamenDetalleID" />
+
+						@if (detalleInfo.TipoResultado == "Numérico")
+						{
+							<input asp-for="Detalles[i].Resultado" type="number" step="any" class="form-control" />
+						}
+						else if (detalleInfo.TipoResultado == "Texto")
+						{
+							<input asp-for="Detalles[i].Resultado" type="text" class="form-control" />
+						}
+						else if (detalleInfo.TipoResultado == "Positivo/Negativo")
+						{
+							<select asp-for="Detalles[i].Resultado" class="form-control">
+								<option value="">Seleccione</option>
+								<option value="Positivo">Positivo</option>
+								<option value="Negativo">Negativo</option>
+							</select>
+						}
+						<span asp-validation-for="Detalles[i].Resultado" class="text-danger"></span>
+					</td>
+
+					<td>@detalleInfo.UnidadMedida</td>
+					<td>@detalleInfo.ValorNormal</td>
+					<td>
+						@* <input asp-for="Detalles[i].Observaciones" class="form-control" data-val="false" /> *@
+						<input name="Detalles[@i].Observaciones" id="Detalles[@i].Observaciones" class="form-control" type="text" value="@(string.IsNullOrWhiteSpace(Model.Detalles[i].Observaciones) ? " - " : Model.Detalles[i].Observaciones)" />
+					</td>
+				</tr>
+			}
+		</tbody>
+	</table>
+
+	<button type="submit" class="btn btn-primary">Guardar Resultados</button>
+	<a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>
+
+@section Scripts {
+	@{
+		await Html.RenderPartialAsync("_ValidationScriptsPartial");
+	}
+}
+

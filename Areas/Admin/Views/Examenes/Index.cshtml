@@ -1,0 +1,36 @@
+﻿@model IEnumerable<CiscaLab.Models.Examen>
+
+<h2>Exámenes disponibles</h2>
+<a asp-action="Create" class="btn btn-success mb-3">Nuevo examen</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Abreviatura</th>
+            <th>Categoría</th>
+            <th>Precio</th>
+            <th>Método</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var examen in Model)
+        {
+            <tr>
+                <td>@examen.NombreExamen</td>
+                <td>@examen.Abreviatura</td>
+                <td>@examen.CategoriaExamen?.NombreCategoriaExamen</td>
+                <td>@examen.PrecioBase</td>
+                <td>@examen.Metodo?.NombreMetodo</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@examen.ExamenId" class="btn btn-sm btn-primary">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@examen.ExamenId" class="btn btn-sm btn-danger">Eliminar</a>
+                    <a asp-area="Admin" asp-controller="ExamenDetalles" asp-action="Index" asp-route-examenId="@examen.ExamenId" class="btn btn-sm btn-outline-success">
+                        Ver detalles
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

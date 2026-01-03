@@ -1,0 +1,36 @@
+﻿@model CiscaLab.Models.ExamenDetalleValoresNormales
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Create">
+    <input type="hidden" asp-for="ExamenDetalleId" value="@ViewBag.DetalleId" />
+
+    <div class="mb-3">
+        <label asp-for="VNUnico" class="form-label"></label>
+        <input asp-for="VNUnico" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label>Hombre</label>
+        <div class="row">
+            <div class="col"><input asp-for="VNInferiorHombre" class="form-control" placeholder="Inferior" /></div>
+            <div class="col"><input asp-for="VNSuperiorHombre" class="form-control" placeholder="Superior" /></div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label>Mujer</label>
+        <div class="row">
+            <div class="col"><input asp-for="VNInferiorMujer" class="form-control" placeholder="Inferior" /></div>
+            <div class="col"><input asp-for="VNSuperiorMujer" class="form-control" placeholder="Superior" /></div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <label>Niño</label>
+        <div class="row">
+            <div class="col"><input asp-for="VNInferiorNino" class="form-control" placeholder="Inferior" /></div>
+            <div class="col"><input asp-for="VNSuperiorNino" class="form-control" placeholder="Superior" /></div>
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <a asp-action="Index" asp-route-detalleId="@Model.ExamenDetalleId" class="btn btn-secondary">Cancelar</a>
+</form>

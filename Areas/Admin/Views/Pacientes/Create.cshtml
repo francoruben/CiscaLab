@@ -1,0 +1,106 @@
+﻿@model Paciente
+
+@{
+    ViewData["Title"] = "Agregar Paciente";
+}
+
+<h3 class="text-center mb-4">Agregar un nuevo paciente</h3>
+
+<form method="POST" asp-action="Create" class="container">
+    <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label asp-for="PrimerNombre" class="form-label"></label>
+                <input asp-for="PrimerNombre" class="form-control" placeholder="Ingrese el Primer Nombre" />
+                <span asp-validation-for="PrimerNombre" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="SegundoNombre" class="form-label"></label>
+                <input asp-for="SegundoNombre" class="form-control" placeholder="Ingrese el Segundo Nombre" />
+                <span asp-validation-for="SegundoNombre" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="PrimerApellido" class="form-label"></label>
+                <input asp-for="PrimerApellido" class="form-control" placeholder="Ingrese el Primer Apellido" />
+                <span asp-validation-for="PrimerApellido" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="SegundoApellido" class="form-label"></label>
+                <input asp-for="SegundoApellido" class="form-control" placeholder="Ingrese el Segundo Apellido" />
+                <span asp-validation-for="SegundoApellido" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="NumeroIdentidad" class="form-label"></label>
+                <input asp-for="NumeroIdentidad" class="form-control" placeholder="Ingrese el Número de Identidad" />
+                <span asp-validation-for="NumeroIdentidad" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="NumeroCelular" class="form-label"></label>
+                <input asp-for="NumeroCelular" type="tel" class="form-control" placeholder="Ingrese el Número de Celular" />
+                <span asp-validation-for="NumeroCelular" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="col-md-6">
+            <div class="mb-3">
+                <label asp-for="CorreoElectronico" class="form-label"></label>
+                <input asp-for="CorreoElectronico" type="email" class="form-control" placeholder="Ingrese el Correo Electrónico" />
+                <span asp-validation-for="CorreoElectronico" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="FechaNacimiento" class="form-label"></label>
+                <input asp-for="FechaNacimiento" type="date" class="form-control" />
+                <span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="DireccionCasa" class="form-label"></label>
+                <input asp-for="DireccionCasa" class="form-control" placeholder="Ingrese la dirección de la casa" />
+                <span asp-validation-for="DireccionCasa" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="CodigoAlternativo" class="form-label"></label>
+                <input asp-for="CodigoAlternativo" class="form-control" placeholder="Ingrese un código alternativo" />
+                <span asp-validation-for="CodigoAlternativo" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Genero" class="form-label"></label>
+                <input asp-for="Genero" class="form-control" placeholder="Ingrese el Género" />
+                <span asp-validation-for="Genero" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ClasificacionPacienteId" class="form-label"></label>
+                <select asp-for="ClasificacionPacienteId" asp-items="ViewBag.Clasificaciones" class="form-select"></select>
+                <span asp-validation-for="ClasificacionPacienteId" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="CategoriaPacienteId" class="form-label"></label>
+                <select asp-for="CategoriaPacienteId" asp-items="ViewBag.Categorias" class="form-select"></select>
+                <span asp-validation-for="CategoriaPacienteId" class="text-danger"></span>
+            </div>
+
+            <div class="form-check mb-3">
+                <input asp-for="EstaActivo" type="checkbox" class="form-check-input" />
+                <label asp-for="EstaActivo" class="form-check-label"></label>
+                <span asp-validation-for="EstaActivo" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="mt-4 text-center">
+        <button type="submit" class="btn btn-primary">Guardar</button>
+        <a asp-action="Index" class="btn btn-secondary">Volver</a>
+    </div>
+</form>

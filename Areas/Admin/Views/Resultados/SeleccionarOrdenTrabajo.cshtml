@@ -1,0 +1,32 @@
+﻿@using CiscaLab.ViewModels
+@model List<OrdenTrabajoSeleccionViewModel>
+
+<h2>Seleccionar orden de trabajo</h2>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th># Orden</th>
+            <th>Paciente</th>
+            <th>Fecha de cita</th>
+            <th>Estado</th>
+            <th>Acción</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var orden in Model)
+        {
+            <tr>
+                <td>@orden.OrdenTrabajoId</td>
+                <td>@orden.NombrePaciente</td>
+                <td>@orden.FechaCita.ToShortDateString()</td>
+                <td>@(orden.EstadoOrden == 1 ? "Pendiente" : "En proceso")</td>
+                <td>
+                    <a asp-action="SeleccionarExamenesPendientes" asp-route-ordenTrabajoId="@orden.OrdenTrabajoId" class="btn btn-primary">
+                        Ver exámenes
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

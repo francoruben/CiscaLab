@@ -1,0 +1,55 @@
+﻿@model Cita
+
+@{
+    ViewData["Title"] = "Confirmación de Cita";
+    var paciente = Model.Paciente;
+    var medico = Model.Medico;
+    var orden = Model.OrdenesTrabajo.FirstOrDefault();
+}
+
+<h2>✅ Cita registrada exitosamente</h2>
+
+<div class="mt-4">
+    <h4>🧑 Datos del paciente</h4>
+    <p><strong>Nombre:</strong> @($"{paciente.PrimerNombre} {paciente.SegundoNombre} {paciente.PrimerApellido} {paciente.SegundoApellido}")</p>
+    <p><strong>Identidad:</strong> @paciente.NumeroIdentidad</p>
+    <p><strong>Teléfono:</strong> @paciente.NumeroCelular</p>
+</div>
+
+<div class="mt-4">
+    <h4>🩺 Médico solicitante</h4>
+    <p><strong>Nombre:</strong> @medico.NombreMedico</p>
+    <p><strong>Especialidad:</strong> @medico.Especialidad?.NombreEspecialidad</p>
+    <p><strong>Teléfono:</strong> @medico.Celular</p>
+</div>
+
+<div class="mt-4">
+    <h4>📅 Información de la cita</h4>
+    <p><strong>Fecha:</strong> @Model.FechaCita.ToString("dd/MM/yyyy")</p>
+    <p><strong>ID de la cita:</strong> @Model.CitaId</p>
+    <p><strong>ID de orden de trabajo:</strong> @orden?.OrdenTrabajoId</p>
+</div>
+
+<div class="mt-4">
+    <h4>🧪 Exámenes solicitados</h4>
+    @if (orden?.OrdenesTrabajoDetalle != null && orden.OrdenesTrabajoDetalle.Any())
+    {
+        <ul>
+            @foreach (var detalle in orden.OrdenesTrabajoDetalle)
+            {
+                <li>@detalle.Examen?.NombreExamen (@detalle.Examen?.Abreviatura)</li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p>No se han asignado exámenes.</p>
+    }
+</div>
+
+<div class="mt-5">
+    <a asp-action="Crear" class="btn btn-secondary">Registrar otra cita</a>
+    <a asp-controller="Resultados" asp-action="Ingresar" asp-route-ordenTrabajoDetalleId="@orden?.OrdenesTrabajoDetalle.FirstOrDefault()?.OrdenTrabajoDetalleId" class="btn btn-primary">
+        Ingresar resultados
+    </a>
+</div>

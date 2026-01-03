@@ -1,0 +1,168 @@
+﻿
+@model CiscaLab.ViewModels.CitaRegistroViewModel
+
+<h2>Registrar Cita y Generar Orden de Trabajo</h2>
+
+<form asp-action="Crear" method="post">
+    <div class="mb-3">
+        <label for="busquedaPaciente" class="form-label">Buscar paciente</label>
+        <input type="text" id="busquedaPaciente" class="form-control" placeholder="Escriba el nombre del paciente" />
+        <input type="hidden" id="PacienteId" name="PacienteId" />
+        <span asp-validation-for="PacienteId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="MedicoId" class="form-label">Médico</label>
+        <select asp-for="MedicoId" asp-items="Model.Medicos" class="form-select"></select>
+        <span asp-validation-for="MedicoId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="FechaCita" class="form-label">Fecha de la cita</label>
+        <input asp-for="FechaCita" type="date" class="form-control" />
+        <span asp-validation-for="FechaCita" class="text-danger"></span>
+    </div>
+
+    @if (Model.ExamenesSeleccionados != null && Model.ExamenesSeleccionados.Any())
+    {
+        <div class="mb-4">
+            @* <input type="hidden" name="ExamenesSeleccionados" id="ExamenesSeleccionados" />
+            <span asp-validation-for="ExamenesSeleccionados" class="text-danger"></span>
+ *@
+            <h5>🧪 Exámenes seleccionados</h5>
+            <ul class="list-group">
+                @foreach (var examenId in Model.ExamenesSeleccionados)
+                {
+                    var examen = Model.ExamenesDisponibles.FirstOrDefault(e => e.Value == examenId.ToString());
+                    if (examen != null)
+                    {
+                        <li class="list-group-item examen-item" data-id="@examen.Value">@examen.Text</li>
+                        <input type="hidden" name="ExamenesSeleccionados" value="@examen.Value" />
+
+
+                    }
+                }
+            </ul>
+            <a asp-action="SeleccionarExamenes" class="btn btn-outline-secondary mt-2">
+                Corregir selección de exámenes
+            </a>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-warning">
+            No se han seleccionado exámenes. Puedes <a asp-action="SeleccionarExamenes">agregarlos aquí</a>.
+        </div>
+    }
+
+    
+    @* <div class="mb-3">
+        <label for="busquedaExamen" class="form-label">Buscar examen</label>
+        <input type="text" id="busquedaExamen" class="form-control" placeholder="Escriba el nombre del examen" />
+        <ul id="listaExamenes" class="list-group mt-2"></ul>
+
+        <!--Campo oculto para enviar los IDs-->
+        <input type="hidden" name="ExamenesSeleccionados" id="ExamenesSeleccionados" />
+        <span asp-validation-for="ExamenesSeleccionados" class="text-danger"></span>
+
+        
+        <!--
+        <label asp-for="ExamenesSeleccionados"class="form-label">Exámenes a realizar</label>
+        <select asp-for="ExamenesSeleccionados" asp-items="Model.ExamenesDisponibles" multiple class="form-select"></select>
+        <span asp-validation-for="ExamenesSeleccionados" class="text-danger"></span>
+        -->
+    </div> *@
+
+    <button type="submit" class="btn btn-primary">Registrar cita</button>
+</form>
+
+@section Scripts {
+
+    <!-- jQuery y jQuery UI -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css" />
+
+    <script>
+        $(function () {
+            $("#busquedaPaciente").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '@Url.Action("BuscarPaciente", "Citas", new { area = "Admin" })',
+                        data: { term: request.term },
+                        success: function (data) {
+                            response(data);
+                        }
+                    });
+                },
+                select: function (event, ui) {
+                    $("#busquedaPaciente").val(ui.item.label);
+                    $("#PacienteId").val(ui.item.value);
+                    return false;
+                }
+            });
+        });
+    </script>
+
+    <script>
+        const examenesSeleccionados = new Set();
+
+        $(function () {
+            $("#busquedaExamen").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: '@Url.Action("BuscarExamen", "Citas", new { area = "Admin" })',
+                        data: { term: request.term },
+                        success: function (data) {
+                            response(data);
+                        }
+                    });
+                },
+                select: function (event, ui) {
+                    const examenId = ui.item.value;
+                    const examenNombre = ui.item.label;
+
+                    if (!examenesSeleccionados.has(examenId)) {
+                        examenesSeleccionados.add(examenId);
+
+           $("#listaExamenes").append(
+                            `<li class="list-group-item d-flex justify-content-between align-items-center">
+                                ${examenNombre}
+                                <button type="button" class="btn btn-sm btn-danger remove-examen" data-id="${examenId}">✖</button>
+                            </li>`
+                        );
+
+                        //actualizarCampoOculto();
+                    }
+
+                    $("#busquedaExamen").val('');
+                    return false;
+                }
+            });
+        // Eliminar examen de la lista
+            $(document).on("click", ".remove-examen", function () {
+                const id = $(this).data("id");
+                examenesSeleccionados.delete(id);
+                $(this).closest("li").remove();
+                //actualizarCampoOculto();
+            });
+
+            //function actualizarCampoOculto() {
+            //const ids = [];
+            //document.querySelectorAll('.examen-item[data-id]').forEach(item => {
+            //    ids.push(item.dataset.id);
+            //});
+            //document.getElementById('ExamenesSeleccionados').value = ids.join(',');
+        //}
+
+        //actualizarCampoOculto();
+
+        });
+    </script>
+
+
+
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

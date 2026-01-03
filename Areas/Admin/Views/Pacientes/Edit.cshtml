@@ -1,0 +1,198 @@
+﻿@model Paciente
+
+@{
+	ViewData["Title"] = "Editar Paciente";
+}
+
+<br />
+<br />
+<h3 class="text-center">Editar paciente</h3>
+<form method="POST" asp-action="Edit">
+	<div class="row px-2 offset-1 border">
+		<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+		@Html.HiddenFor(Model => Model.PacienteID)
+
+
+		<div class="col-10 offset-1 mt-4">
+			<div class="form-group row">
+				<div class="col-4">
+					<label asp-for="PrimerNombre"></label>
+				</div>
+				<div class="col-8">
+					<input asp-for="PrimerNombre" class="form-control" placeholder="Ingrese el Primer Nombre" />
+					<span asp-validation-for="PrimerNombre" class="text-danger"></span>
+				</div>
+			</div>
+
+			<br />
+
+			<div class="form-group row">
+				<div class="col-4">
+					<label asp-for="SegundoNombre"></label>
+				</div>
+				<div class="col-8">
+					<input asp-for="SegundoNombre" class="form-control" placeholder="Ingrese el Segundo Nombre" />
+					<span asp-validation-for="SegundoNombre" class="text-danger"></span>
+				</div>
+			</div>
+
+			<br />
+
+			<div class="form-group row">
+				<div class="col-4">
+					<label asp-for="PrimerApellido"></label>
+				</div>
+				<div class="col-8">
+					<input asp-for="PrimerApellido" class="form-control" placeholder="Ingrese el Primer Apellido" />
+					<span asp-validation-for="PrimerApellido" class="text-danger"></span>
+				</div>
+			</div>
+
+			<br />
+
+			<div class="form-group row">
+				<div class="col-4">
+					<label asp-for="SegundoApellido"></label>
+				</div>
+				<div class="col-8">
+					<input asp-for="SegundoApellido" class="form-control" placeholder="Ingrese el Segundo Apellido" />
+					<span asp-validation-for="SegundoApellido" class="text-danger"></span>
+				</div>
+			</div>
+
+			<br />
+
+			<div class="form-group row">
+				<div class="col-4">
+					<label asp-for="NumeroIdentidad"></label>
+				</div>
+				<div class="col-8">
+					<input asp-for="NumeroIdentidad" class="form-control" placeholder="Ingrese el Numero de Identidad" />
+					<span asp-validation-for="NumeroIdentidad" class="text-danger"></span>
+				</div>
+			</div>
+
+			<br />
+
+			<div class="form-group row">
+				<div class="col-4">
+					<label asp-for="NumeroCelular"></label>
+				</div>
+				<div class="col-8">
+					<input asp-for="NumeroCelular" class="form-control" placeholder="Ingrese el Numero de Celular" />
+					<span asp-validation-for="NumeroCelular" class="text-danger"></span>
+				</div>
+			</div>
+
+			<br />
+
+			<div class="form-group row">
+				<div class="col-4">
+					<label asp-for="CorreoElectronico"></label>
+				</div>
+				<div class="col-8">
+					<input asp-for="CorreoElectronico" class="form-control" placeholder="Ingrese el Correo Electrónico" />
+					<span asp-validation-for="CorreoElectronico" class="text-danger"></span>
+				</div>
+			</div>
+
+			<br />
+
+			<div class="form-group row">
+				<div class="col-4">
+					<label asp-for="FechaNacimiento"></label>
+				</div>
+				<div class="col-8">
+					<input asp-for="FechaNacimiento" class="form-control" placeholder="Ingrese la Fecha de nacimiento" />
+					<span asp-validation-for="FechaNacimiento" class="text-danger"></span>
+				</div>
+			</div>
+
+			<br />
+
+			<div class="form-group row">
+				<div class="col-4">
+					<label asp-for="DireccionCasa"></label>
+				</div>
+				<div class="col-8">
+					<input asp-for="DireccionCasa" class="form-control" placeholder="Ingrese la dirección de la casa" />
+					<span asp-validation-for="DireccionCasa" class="text-danger"></span>
+				</div>
+			</div>
+
+			<br />
+
+			<div class="form-group row">
+				<div class="col-4">
+					<label asp-for="CodigoAlternativo"></label>
+				</div>
+				<div class="col-8">
+					<input asp-for="CodigoAlternativo" class="form-control" placeholder="Ingrese un código alternativo" />
+					<span asp-validation-for="CodigoAlternativo" class="text-danger"></span>
+				</div>
+			</div>
+
+			<br />
+
+			<div class="form-group row">
+				<div class="col-4">
+					<label asp-for="Genero"></label>
+				</div>
+				<div class="col-8">
+					<input asp-for="Genero" class="form-control" placeholder="Ingrese el Genero" />
+					<span asp-validation-for="Genero" class="text-danger"></span>
+				</div>
+			</div>
+
+			<br />
+
+			<div class="form-group row">
+				<div class="col-4">
+					<label asp-for="ClasificacionPacienteId"></label>
+				</div>
+				<div class="col-8">
+					<input asp-for="ClasificacionPacienteId" class="form-control" placeholder="Clasificación" />
+					<span asp-validation-for="ClasificacionPacienteId" class="text-danger"></span>
+				</div>
+			</div>
+
+			<br />
+
+			<div class="form-group row">
+				<div class="col-4">
+					<label asp-for="CategoriaPacienteId"></label>
+				</div>
+				<div class="col-8">
+					<input asp-for="CategoriaPacienteId" class="form-control" placeholder="Categoria" />
+					<span asp-validation-for="CategoriaPacienteId" class="text-danger"></span>
+				</div>
+			</div>
+
+			<br />
+
+			<div class="form-group row">
+				<div class="col-4">
+					<label asp-for="EstaActivo"></label>
+				</div>
+				<div class="col-8">
+					<input asp-for="EstaActivo" class="form-control" placeholder="Ingrese el Primer Nombre" />
+					<span asp-validation-for="EstaActivo" class="text-danger"></span>
+				</div>
+			</div>
+
+			<br />
+
+			<div class="row">
+				<div class="col">
+					<button type="submit" class="btn btn-primary form-control">Editar Paciente</button>
+				</div>
+				&nbsp;
+				<div class="col">
+					<a asp-action="Index" class="btn btn-success form-control">Volver atrás</a>
+				</div>
+			</div>
+
+		</div>
+	</div>
+</form>

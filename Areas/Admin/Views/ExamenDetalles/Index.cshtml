@@ -1,0 +1,35 @@
+﻿@model IEnumerable<CiscaLab.Models.ExamenDetalle>
+@{
+    var examen = ViewBag.Examen as CiscaLab.Models.Examen;
+}
+
+<h2>Detalles del examen: @examen.NombreExamen</h2>
+<a asp-action="Create" asp-route-examenId="@examen.ExamenId" class="btn btn-success mb-3">Nuevo detalle</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Nombre valor</th>
+            <th>Unidad de medida</th>
+            <th>Tipo resultado</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var detalle in Model)
+        {
+            <tr>
+                <td>@detalle.NombreValor</td>
+                <td>@detalle.UnidadMedida?.NombreUnidadMedida</td>
+                <td>@detalle.TipoResultado?.NombreTipoResultado</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@detalle.ExamenDetalleID" class="btn btn-sm btn-primary">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@detalle.ExamenDetalleID" class="btn btn-sm btn-danger">Eliminar</a>
+                    <a asp-area="Admin" asp-controller="ExamenDetalleValoresNormales" asp-action="Index" asp-route-detalleId="@detalle.ExamenDetalleID" class="btn btn-sm btn-outline-info">
+                        Valores normales
+                    </a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

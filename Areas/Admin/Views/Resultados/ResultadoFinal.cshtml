@@ -1,0 +1,152 @@
+﻿@model ResultadoExamen
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Resultado de Examen Clínico</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .fuera-rango {
+            color: red;
+            font-weight: bold;
+        }
+
+        .section-title {
+            font-weight: bold;
+            margin-top: 30px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            font-size: 0.9em;
+            text-align: center;
+        }
+        
+    </style>
+</head>
+<body>
+    <button onclick="window.print()" class="no-print" style="margin-bottom: 20px; padding: 10px 20px; font-size: 16px;">
+        🖨️ Imprimir resultado
+    </button>
+
+    <h2>Resultado de Examen Clínico</h2>
+
+    <div class="section-title">🧑 Datos del Paciente</div>
+    @{
+        var paciente = Model.OrdenTrabajoDetalle?.OrdenTrabajo?.Cita?.Paciente;
+    }
+    <p><strong>Nombre completo:</strong> @($"{paciente?.PrimerNombre} {paciente?.SegundoNombre} {paciente?.PrimerApellido} {paciente?.SegundoApellido}")</p>
+    <p><strong>Identidad:</strong> @paciente?.NumeroIdentidad</p>
+    <p><strong>Fecha de nacimiento:</strong> @paciente?.FechaNacimiento.ToString("dd/MM/yyyy")</p>
+    <p><strong>Género:</strong> @paciente?.Genero</p>
+    <p><strong>Teléfono:</strong> @paciente?.NumeroCelular</p>
+    <p><strong>Correo:</strong> @paciente?.CorreoElectronico</p>
+
+    <div class="section-title">📄 Información del Examen</div>
+    <p><strong>Fecha:</strong> @Model.FechaRegistro.ToShortDateString()</p>
+    <p><strong>Hora:</strong> @Model.HoraRegistro.ToShortTimeString()</p>
+    <p><strong>Orden de trabajo:</strong> @Model.OrdenTrabajoDetalleId</p>
+    <p><strong>Observación general:</strong> @Model.Observacion</p>
+
+    <div class="section-title">🩺 Médico Solicitante</div>
+    @{
+        var medico = Model.OrdenTrabajoDetalle?.OrdenTrabajo?.Cita?.Medico;
+    }
+    <p><strong>Nombre:</strong> @medico?.NombreMedico</p>
+    <p><strong>Especialidad:</strong> @medico?.Especialidad?.NombreEspecialidad</p>
+    <p><strong>Teléfono:</strong> @medico?.Celular</p>
+    <p><strong>Email:</strong> @medico?.Email</p>
+    <p><strong>Dirección del consultorio:</strong> @medico?.DireccionConsultorio</p>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Parámetro</th>
+                <th>Resultado</th>
+                <th>Unidad</th>
+                <th>Valores normales</th>
+                <th>Observaciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var detalle in Model.ResultadoExamenesDetalle)
+            {
+                var examenDetalle = detalle.ExamenDetalle;
+                var unidad = examenDetalle.UnidadMedida?.NombreUnidadMedida ?? "";
+                var tipo = examenDetalle.TipoResultado?.NombreTipoResultado ?? "";
+                var valoresNormales = examenDetalle.ExamenesDetalleValoresNormales?.FirstOrDefault();
+                string resultado = "";
+
+                if (tipo == "Numérico")
+                {
+                    resultado = detalle.ValorResultadoNumero.ToString();
+                }
+                else if (tipo == "Texto")
+                {
+                    if (!string.IsNullOrEmpty(detalle.ValorResultadoTexto))
+                    {
+                        resultado = detalle.ValorResultadoTexto;
+                    }
+
+                }
+                else if (tipo == "Positivo/Negativo")
+                {
+                    if (detalle.ValorResultadoPosNeg.HasValue)
+                    {
+                        resultado = detalle.ValorResultadoPosNeg.Value ? "Positivo" : "Negativo";
+                    }
+
+                }
+
+                string rango = valoresNormales != null
+                ? $"{valoresNormales.VNInferiorHombre} - {valoresNormales.VNSuperiorHombre}"
+                : "N/A";
+
+                bool fueraDeRango = false;
+                if (tipo == "Numérico" && valoresNormales != null)
+                {
+                    fueraDeRango = detalle.ValorResultadoNumero < valoresNormales.VNInferiorHombre
+                    || detalle.ValorResultadoNumero > valoresNormales.VNSuperiorHombre;
+                }
+                <tr>
+                    <td>@examenDetalle.NombreValor</td>
+                    <td class="@(fueraDeRango ? "fuera-rango" : "")">@resultado</td>
+                    <td>@unidad</td>
+                    <td>@rango</td>
+                    <td>@detalle.Observaciones</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <div class="footer">
+        <p>Este reporte fue generado automáticamente por el sistema de laboratorio clínico.</p>
+    </div>
+</body>
+</html>
+

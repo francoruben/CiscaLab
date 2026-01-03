@@ -1,0 +1,22 @@
+﻿@model CiscaLab.ViewModels.ExamenDetalleViewModel
+
+<form asp-action="Create">
+    <input type="hidden" asp-for="Detalle.ExamenId" />
+
+    <div class="mb-3">
+        <label asp-for="Detalle.NombreValor" class="form-label"></label>
+        <input asp-for="Detalle.NombreValor" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Detalle.UnidadMedidaId" class="form-label"></label>
+        <select asp-for="Detalle.UnidadMedidaId" asp-items="Model.UnidadesMedida" class="form-select"></select>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Detalle.TipoResultadoId" class="form-label"></label>
+        <select asp-for="Detalle.TipoResultadoId" asp-items="Model.TiposResultado" class="form-select"></select>
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar</button>
+</form>

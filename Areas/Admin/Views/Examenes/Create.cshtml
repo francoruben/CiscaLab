@@ -1,0 +1,35 @@
+﻿@model CiscaLab.Models.Examen
+
+<h2>@ViewData["Title"]</h2>
+
+<form asp-action="Create">
+    <div class="mb-3">
+        <label asp-for="NombreExamen" class="form-label"></label>
+        <input asp-for="NombreExamen" class="form-control" />
+        <span asp-validation-for="NombreExamen" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Abreviatura" class="form-label"></label>
+        <input asp-for="Abreviatura" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="CategoriaExamenId" class="form-label"></label>
+        <select asp-for="CategoriaExamenId"
+                asp-items="ViewBag.CategoriaExamenId"
+                class="form-select"></select>
+
+    </div>
+    <div class="mb-3">
+        <label asp-for="PrecioBase" class="form-label"></label>
+        <input asp-for="PrecioBase" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="MetodoId" class="form-label"></label>
+        <select asp-for="MetodoId"
+                asp-items="ViewBag.MetodoId"
+                class="form-select"></select>
+
+    </div>
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

@@ -1,0 +1,42 @@
+﻿@model List<CiscaLab.ViewModels.OrdenSeleccionViewModel>
+
+@{
+    ViewData["Title"] = "Exámenes pendientes de resultados";
+}
+
+<h2>Exámenes pendientes de resultados</h2>
+
+@if (!Model.Any())
+{
+    <div class="alert alert-info">
+        No hay exámenes pendientes de resultados para esta orden de trabajo.
+    </div>
+}
+else
+{
+ <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Paciente</th>
+                <th>Fecha de cita</th>
+                <th>Examen</th>
+                <th>Acción</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var examen in Model)
+            {
+                <tr>
+                    <td>@examen.NombrePaciente</td>
+                    <td>@examen.FechaCita.ToShortDateString()</td>
+                    <td>@examen.NombreExamen</td>
+                    <td>
+                        <a asp-action="Ingresar" asp-route-ordenTrabajoDetalleId="@examen.OrdenTrabajoDetalleId" class="btn btn-primary">
+                            Ingresar resultados
+                        </a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
