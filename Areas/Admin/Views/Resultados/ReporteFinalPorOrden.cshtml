@@ -53,7 +53,7 @@
     <div class="@claseSalto">
 
         <h4 class="mt-4">@examen.NombreExamen</h4>
-        <table class="table table-bordered">
+        <table class="table table-borderless">
             <thead>
                 <tr>
                     <th>Parámetro</th>
@@ -168,113 +168,6 @@
     index++;
 }
 
-@*
-<style>
-    @@media print {
-
-        .encabezado-laboratorio {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: auto; /* deja que se ajuste al contenido */
-            background-color: white;
-            padding: 8px 20px;
-            border-bottom: 1px solid #000; /* reemplaza el <hr /> */
-            z-index: 1000;
-            page-break-after: avoid;
-            page-break-before: avoid;
-        }
-        /* Espacio para que el contenido no se solape con el encabezado */
-        .examen-pagina,
-        .examen-seccion {
-            padding-top: 180px; /* ajusta según la altura real del encabezado */
-        }
-
-
-        .encabezado-laboratorio h1 {
-            margin: 0;
-            font-size: 20px; 
-        }
-
-        .encabezado-laboratorio p {
-            margin: 0;
-            font-size: 12px; 
-        }
-
-        .encabezado-laboratorio .mb-3 {
-            margin-top: 6px; /* espacio mínimo arriba de la línea */
-            margin-bottom: 6px; /* espacio mínimo debajo de la línea */
-            line-height: 1.2;
-        }
-
-        .mb-3 {
-            margin-top: 2px !important;
-        }
-
-
-        body {
-            margin-top: 0px; /* deja espacio para el encabezado */
-        }
-
-        .examen-pagina {
-            
-            page-break-after: always;
-            /*padding-top: 180px;  espacio debajo del encabezado */
-        }
-        .examen-seccion {
-            page-break-inside: avoid;
-            /*padding-top: 180px;*/
-        }
-
-        body {
-            font-size: 11px;
-            line-height: 1;
-        }
-
-        h2, h4 {
-            margin-top: 8px;
-            margin-bottom: 4px;
-        }
-
-        table td, table th {
-            padding: 1px 4px;
-            line-height: 1;
-        }
-
-        button, a {
-            display: none !important;
-        }
-        /* En impresión, resaltar fuera de rango en negrita y con borde */
-        .fuera-rango {
-            font-weight: bold;
-            border: 2px solid black;
-            color: black !important;
-        }
-        .indicador {
-            font-weight: bold;
-        }
-
-        .examen-pagina {
-            page-break-after: always;
-            padding-top: 140px; /* igual o mayor que el margin-top del body */
-        }
-
-        .examen-seccion {
-            page-break-inside: avoid;
-            padding-top: 140px;
-        }
-    }
-
-    /* En pantalla, resaltar con rojo */
-    .fuera-rango {
-        background-color: #f8d7da !important;
-        color: #721c24 !important;
-        font-weight: bold;
-    }
-
-</style>
-*@
 
 <style>
     @@media print {
@@ -419,25 +312,6 @@
         }
     }
 </style>
-
-@* <style>
-    @@media print {
-        table {
-            page-break-inside: avoid;
-            border-collapse: collapse;
-        }
-
-        thead {
-            display: table-header-group;
-        }
-
-        tr {
-            page-break-inside: avoid;
-            page-break-after: auto;
-        }
-    }
-</style> *@
-
 
 
 

@@ -285,3 +285,4 @@ C:\Users\ruben\source\repos\CiscaLab\CiscaLab\obj\Debug\net8.0\CiscaLab.pdb
 C:\Users\ruben\source\repos\CiscaLab\CiscaLab\obj\Debug\net8.0\CiscaLab.genruntimeconfig.cache
 C:\Users\ruben\source\repos\CiscaLab\CiscaLab\obj\Debug\net8.0\ref\CiscaLab.dll
 C:\Users\ruben\source\repos\CiscaLab\CiscaLab\obj\Debug\net8.0\staticwebassets.upToDateCheck.txt
+C:\Users\ruben\source\repos\CiscaLab\CiscaLab\obj\Debug\net8.0\CiscaLab.sourcelink.json
