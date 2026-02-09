@@ -1,0 +1,14 @@
+﻿@model CiscaLab.Models.Especialidad
+
+<h2>Eliminar Especialidad</h2>
+
+<div class="alert alert-warning">
+    ¿Está seguro que desea eliminar la especialidad
+    <strong>@Model.NombreEspecialidad</strong>?
+</div>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="EspecialidadId" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

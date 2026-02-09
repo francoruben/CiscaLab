@@ -1,0 +1,16 @@
+﻿@model CiscaLab.Models.Metodo
+
+<h2>Editar Método</h2>
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="MetodoId" />
+
+    <div class="mb-3">
+        <label asp-for="NombreMetodo" class="form-label"></label>
+        <input asp-for="NombreMetodo" class="form-control" />
+        <span asp-validation-for="NombreMetodo" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</form>

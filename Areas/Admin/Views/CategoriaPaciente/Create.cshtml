@@ -1,0 +1,13 @@
+﻿@model CiscaLab.Models.CategoriaPaciente
+
+<h2>Nueva Categoría</h2>
+
+<form asp-action="Create">
+    <div class="mb-3">
+        <label asp-for="NombreCategoriaPaciente" class="form-label"></label>
+        <input asp-for="NombreCategoriaPaciente" class="form-control" />
+        <span asp-validation-for="NombreCategoriaPaciente" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</form>     

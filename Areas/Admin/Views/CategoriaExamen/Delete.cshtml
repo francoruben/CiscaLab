@@ -1,0 +1,14 @@
+﻿@model CiscaLab.Models.CategoriaExamen
+
+<h2>Eliminar Categoría de Examen</h2>
+
+<div class="alert alert-warning">
+    ¿Está seguro que desea eliminar la categoría
+    <strong>@Model.NombreCategoriaExamen</strong>?
+</div>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="CategoriaExamenId" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

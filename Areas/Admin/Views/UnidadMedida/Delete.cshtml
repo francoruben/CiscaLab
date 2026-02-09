@@ -1,0 +1,14 @@
+﻿@model CiscaLab.Models.UnidadMedida
+
+<h2>Eliminar Unidad de Medida</h2>
+
+<div class="alert alert-warning">
+    ¿Está seguro que desea eliminar la unidad
+    <strong>@Model.NombreUnidadMedida</strong>?
+</div>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="UnidadMedidaId" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

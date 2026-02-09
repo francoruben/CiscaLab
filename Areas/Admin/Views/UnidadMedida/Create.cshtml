@@ -1,0 +1,14 @@
+﻿@model CiscaLab.Models.UnidadMedida
+
+<h2>Nueva Unidad de Medida</h2>
+
+<form asp-action="Create">
+    <div class="mb-3">
+        <label asp-for="NombreUnidadMedida" class="form-label"></label>
+        <input asp-for="NombreUnidadMedida" class="form-control" />
+        <span asp-validation-for="NombreUnidadMedida" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Guardar</button>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</form>

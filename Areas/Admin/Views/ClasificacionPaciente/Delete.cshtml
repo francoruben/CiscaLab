@@ -1,0 +1,13 @@
+﻿@model CiscaLab.Models.ClasificacionPaciente
+
+<h2>Eliminar Clasificación</h2>
+
+<div class="alert alert-warning">
+    ¿Está seguro que desea eliminar la clasificación <strong>@Model.NombreClasificacionPaciente</strong>?
+</div>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="ClasificacionPacienteId" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

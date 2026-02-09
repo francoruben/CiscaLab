@@ -1,0 +1,25 @@
+﻿@model IEnumerable<CiscaLab.Models.UnidadMedida>
+
+<h2>Unidades de Medida</h2>
+<a asp-action="Create" class="btn btn-primary mb-3">Nueva Unidad</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Nombre de la Unidad</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.NombreUnidadMedida</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.UnidadMedidaId" class="btn btn-sm btn-warning">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@item.UnidadMedidaId" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

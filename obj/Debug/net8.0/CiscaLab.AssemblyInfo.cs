@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CiscaLab")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bee922c8de21fce50b75d26fb92b4c93622b4d56")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+330a52df04d9cb51f466fc6834f884909c9f8fba")]
 [assembly: System.Reflection.AssemblyProductAttribute("CiscaLab")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CiscaLab")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

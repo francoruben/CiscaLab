@@ -43,9 +43,22 @@
                                 <a class="dropdown-item" asp-area="Admin" asp-controller="Pacientes" asp-action="Index">Pacientes</a>
                                 <a class="dropdown-item" asp-area="Admin" asp-controller="Examenes" asp-action="Index">Exámenes</a>
                                 <a class="dropdown-item" asp-area="Admin" asp-controller="Usuarios" asp-action="Index">Usuarios</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Medico" asp-action="Index">Medicos</a>
                                 <a class="dropdown-item" asp-area="Admin" asp-controller="Citas" asp-action="SeleccionarExamenes">Citas</a>
                                 <a class="dropdown-item" asp-area="Admin" asp-controller="Resultados" asp-action="SeleccionarOrdenTrabajo">Ingresar Resultados</a>
                                 <a class="dropdown-item" asp-area="Admin" asp-controller="Resultados" asp-action="OrdenesParaImpresion">Ordenes para Imprimir</a>
+
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Listados de Opciones</a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="CategoriaPaciente" asp-action="Index">Categoria de Pacientes</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="ClasificacionPaciente" asp-action="Index">Clasificación de Pacientes</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="CategoriaExamen" asp-action="Index">Categoria de Exámenes</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Metodo" asp-action="Index">Métodos de Exámenes</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="UnidadMedida" asp-action="Index">Unidades de Medidas</a>
+                                <a class="dropdown-item" asp-area="Admin" asp-controller="Especialidad" asp-action="Index">Especialidades de Médicos</a>
 
                             </div>
                         </li>

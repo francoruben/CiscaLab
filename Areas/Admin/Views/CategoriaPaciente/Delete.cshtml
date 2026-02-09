@@ -1,0 +1,18 @@
+﻿@model CiscaLab.Models.CategoriaPaciente
+
+@{
+    ViewData["Title"] = "Eliminar Categoría de Paciente";
+}
+
+<h2>Eliminar Categoría de Paciente</h2>
+
+<div class="alert alert-warning">
+    ¿Está seguro que desea eliminar la categoría
+    <strong>@Model.NombreCategoriaPaciente</strong>?
+</div>
+
+<form asp-action="Delete">
+    <input type="hidden" asp-for="CategoriaPacienteId" />
+    <button type="submit" class="btn btn-danger">Eliminar</button>
+    <a asp-action="Index" class="btn btn-secondary">Cancelar</a>
+</form>

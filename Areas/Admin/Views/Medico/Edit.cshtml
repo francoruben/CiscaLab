@@ -1,0 +1,42 @@
+﻿@model CiscaLab.Models.Medico
+
+<h2>Editar Médico</h2>
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="MedicoId" />
+
+    <div class="mb-3">
+        <label asp-for="CodigoAlternativoMedico" class="form-label"></label>
+        <input asp-for="CodigoAlternativoMedico" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="NombreMedico" class="form-label"></label>
+        <input asp-for="NombreMedico" class="form-control" />
+        <span asp-validation-for="NombreMedico" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="EspecialidadId" class="form-label"></label>
+        <select asp-for="EspecialidadId" asp-items="ViewBag.EspecialidadId" class="form-select"></select>
+        <span asp-validation-for="EspecialidadId" class="text-danger"></span>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Celular" class="form-label"></label>
+        <input asp-for="Celular" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label"></label>
+        <input asp-for="Email" type="email" class="form-control" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="DireccionConsultorio" class="form-label"></label>
+        <input asp-for="DireccionConsultorio" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</form>

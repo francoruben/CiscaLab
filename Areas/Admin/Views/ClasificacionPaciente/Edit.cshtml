@@ -1,0 +1,16 @@
+﻿@model CiscaLab.Models.ClasificacionPaciente
+
+<h2>Editar Clasificación</h2>
+
+<form asp-action="Edit">
+    <input type="hidden" asp-for="ClasificacionPacienteId" />
+
+    <div class="mb-3">
+        <label asp-for="NombreClasificacionPaciente" class="form-label"></label>
+        <input asp-for="NombreClasificacionPaciente" class="form-control" />
+        <span asp-validation-for="NombreClasificacionPaciente" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Actualizar</button>
+    <a asp-action="Index" class="btn btn-secondary">Volver</a>
+</form> 

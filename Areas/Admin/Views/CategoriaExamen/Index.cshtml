@@ -1,0 +1,27 @@
+﻿@model IEnumerable<CiscaLab.Models.CategoriaExamen>
+
+<h2>Categorías de Examen</h2>
+<a asp-action="Create" class="btn btn-primary mb-3">Nueva Categoría</a>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.NombreCategoriaExamen</td>
+                <td>@item.DescripcionCategoriaExamen</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.CategoriaExamenId" class="btn btn-sm btn-warning">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@item.CategoriaExamenId" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<CiscaLab.Models.Medico>
+
+<h2>Médicos</h2>
+<a asp-action="Create" class="btn btn-primary mb-3">Nuevo Médico</a>
+
+<table class="table table-borderless">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Especialidad</th>
+            <th>Celular</th>
+            <th>Email</th>
+            <th>Fecha Registro</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.NombreMedico</td>
+                <td>@item.Especialidad?.NombreEspecialidad</td>
+                <td>@item.Celular</td>
+                <td>@item.Email</td>
+                <td>@item.FechaRegistro.ToShortDateString()</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.MedicoId" class="btn btn-sm btn-warning">Editar</a>
+                    <a asp-action="Delete" asp-route-id="@item.MedicoId" class="btn btn-sm btn-danger">Eliminar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
