@@ -1,6 +1,8 @@
 ﻿using CiscaLab.AccesoDatos.Data.Repository.IRepository;
 using CiscaLab.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
 
 namespace CiscaLab.Areas.Admin.Controllers
 {
@@ -23,7 +25,20 @@ namespace CiscaLab.Areas.Admin.Controllers
         [HttpGet]
         public IActionResult Create() 
         {
-           
+
+           ViewBag.Clasificaciones = new SelectList(
+                _contenedorTrabajo.ClasificacionPaciente.GetAll(),
+                "ClasificacionPacienteId",
+                "NombreClasificacionPaciente"
+            );
+
+            ViewBag.Categorias = new SelectList(
+                _contenedorTrabajo.CategoriaPaciente.GetAll(),
+                "CategoriaPacienteId",
+                "NombreCategoriaPaciente"
+            );
+
+
             return View();
         }
 
@@ -38,6 +53,22 @@ namespace CiscaLab.Areas.Admin.Controllers
                 _contenedorTrabajo.Save();
                 return RedirectToAction(nameof(Index));
             }
+
+            // Volver a llenar combos si hay error
+            ViewBag.Clasificaciones = new SelectList(
+                _contenedorTrabajo.ClasificacionPaciente.GetAll(),
+                "ClasificacionPacienteId",
+                "NombreClasificacionPaciente",
+                paciente.ClasificacionPacienteId
+            );
+
+            ViewBag.Categorias = new SelectList(
+                _contenedorTrabajo.CategoriaPaciente.GetAll(),
+                "CategoriaPacienteId",
+                "NombreCategoriaPaciente",
+                paciente.CategoriaPacienteId
+            );
+
 
             return View(paciente);
         }
@@ -54,6 +85,20 @@ namespace CiscaLab.Areas.Admin.Controllers
                 return NotFound();
             }
 
+            ViewBag.Clasificaciones = new SelectList(
+                 _contenedorTrabajo.ClasificacionPaciente.GetAll(),
+                 "ClasificacionPacienteId",
+                 "NombreClasificacionPaciente",
+                 paciente.ClasificacionPacienteId
+             );
+
+            ViewBag.Categorias = new SelectList(
+                _contenedorTrabajo.CategoriaPaciente.GetAll(),
+                "CategoriaPacienteId",
+                "NombreCategoriaPaciente",
+                paciente.CategoriaPacienteId
+            );
+
             return View(paciente);
         }
 
@@ -68,6 +113,22 @@ namespace CiscaLab.Areas.Admin.Controllers
                 _contenedorTrabajo.Save();
                 return RedirectToAction(nameof(Index));
             }
+
+            // Volver a llenar combos si hay error
+            ViewBag.Clasificaciones = new SelectList(
+                _contenedorTrabajo.ClasificacionPaciente.GetAll(),
+                "ClasificacionPacienteId",
+                "NombreClasificacionPaciente",
+                paciente.ClasificacionPacienteId
+            );
+
+            ViewBag.Categorias = new SelectList(
+                _contenedorTrabajo.CategoriaPaciente.GetAll(),
+                "CategoriaPacienteId",
+                "NombreCategoriaPaciente",
+                paciente.CategoriaPacienteId
+            );
+
 
             return View(paciente);
         }

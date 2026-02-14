@@ -75,7 +75,11 @@
 
             <div class="mb-3">
                 <label asp-for="Genero" class="form-label"></label>
-                <input asp-for="Genero" class="form-control" placeholder="Ingrese el Género" />
+                <select asp-for="Genero" class="form-select">
+                    <option value="">Seleccione género</option>
+                    <option value="Masculino">Masculino</option>
+                    <option value="Femenino">Femenino</option>
+                </select>
                 <span asp-validation-for="Genero" class="text-danger"></span>
             </div>
 
@@ -91,7 +95,7 @@
                 <span asp-validation-for="CategoriaPacienteId" class="text-danger"></span>
             </div>
 
-            <div class="form-check mb-3">
+           <div class="form-check mb-3">
                 <input asp-for="EstaActivo" type="checkbox" class="form-check-input" />
                 <label asp-for="EstaActivo" class="form-check-label"></label>
                 <span asp-validation-for="EstaActivo" class="text-danger"></span>

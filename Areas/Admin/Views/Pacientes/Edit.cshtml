@@ -140,46 +140,56 @@
 					<label asp-for="Genero"></label>
 				</div>
 				<div class="col-8">
-					<input asp-for="Genero" class="form-control" placeholder="Ingrese el Genero" />
+					<select asp-for="Genero" class="form-select">
+						<option value="">Seleccione género</option>
+						<option value="Masculino">Masculino</option>
+						<option value="Femenino">Femenino</option>
+					</select>
 					<span asp-validation-for="Genero" class="text-danger"></span>
 				</div>
 			</div>
 
+
 			<br />
 
+			<!-- Combo Clasificación -->
 			<div class="form-group row">
 				<div class="col-4">
 					<label asp-for="ClasificacionPacienteId"></label>
 				</div>
 				<div class="col-8">
-					<input asp-for="ClasificacionPacienteId" class="form-control" placeholder="Clasificación" />
+					<select asp-for="ClasificacionPacienteId" asp-items="ViewBag.Clasificaciones" class="form-select"></select>
 					<span asp-validation-for="ClasificacionPacienteId" class="text-danger"></span>
 				</div>
 			</div>
 
 			<br />
 
+			<!-- Combo Categoría -->
 			<div class="form-group row">
 				<div class="col-4">
 					<label asp-for="CategoriaPacienteId"></label>
 				</div>
 				<div class="col-8">
-					<input asp-for="CategoriaPacienteId" class="form-control" placeholder="Categoria" />
+					<select asp-for="CategoriaPacienteId" asp-items="ViewBag.Categorias" class="form-select"></select>
 					<span asp-validation-for="CategoriaPacienteId" class="text-danger"></span>
 				</div>
 			</div>
 
 			<br />
 
+			<!-- Checkbox Activo -->
 			<div class="form-group row">
 				<div class="col-4">
 					<label asp-for="EstaActivo"></label>
 				</div>
 				<div class="col-8">
-					<input asp-for="EstaActivo" class="form-control" placeholder="Ingrese el Primer Nombre" />
+					<input asp-for="EstaActivo" type="checkbox" class="form-check-input" />
 					<span asp-validation-for="EstaActivo" class="text-danger"></span>
 				</div>
 			</div>
+
+
 
 			<br />
 
